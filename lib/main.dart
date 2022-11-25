@@ -1,3 +1,5 @@
+
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'dart:math' as math;
 import 'package:compass_using_flutter/neu_circle.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +43,40 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey,
-        body: Builder(
-          builder: (context) {
-            if (_hasPermissions) {
-              return _buildCompass();
-            } else {
-              return _buildPermissionSheet();
-            }
-          },
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                  child: Container(
+
+                  ))
+              ,
+              Expanded(
+                flex: 3,
+                child: Container(
+                  color: Colors.blueGrey,
+                  child: Center(child: Text("DigiCOMPASS", style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),)),
+                ),
+              ),
+              Expanded(
+                flex: 21,
+                child: Builder(
+                  builder: (context) {
+                    if (_hasPermissions) {
+                      return _buildCompass();
+                    } else {
+                      return _buildPermissionSheet();
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -101,8 +129,29 @@ class _MyAppState extends State<MyApp> {
           });
         },
         child: Container(
-          child: const Text('Request Permissions'),
-         color: Colors.blueGrey,
+          child: Center(child: const Text('Request Permissions')),
+         //color: Colors.blueGrey,
+         height: 100,
+         width: 300,
+         padding: EdgeInsets.all(8),
+         decoration: BoxDecoration(
+           color: Colors.white,
+           borderRadius: BorderRadius.circular(50),
+           boxShadow: [
+           const BoxShadow(
+             color: Color(0xFFBEBEBE),
+             offset: Offset(10, 10),
+             blurRadius: 20,
+             spreadRadius: 1,
+             ),
+           const BoxShadow(
+             color: Colors.white,
+             offset: Offset(-10, -10),
+             blurRadius: 20,
+             spreadRadius: 1,
+             ),
+           ]
+         ),
          /* onPressed: () {
             Permission.locationWhenInUse.request().then((ignored) {
               _fetchPermissionStatus();
